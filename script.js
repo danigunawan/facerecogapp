@@ -33,11 +33,12 @@ video.addEventListener('play', () => {
     const displaySize = { width: video.width, height: video.height }
     faceapi.matchDimensions(canvas, displaySize)
     setInterval(async () => {
-        console.log({'video_width': video.width, 'video_height': video.height})
-        console.log({'canvas_width': canvas.width, 'canvas_height': canvas.height})
+        
         const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
         const resizeDetections = faceapi.resizeResults(detections, displaySize)
-        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height) //hace que el renderizado sea mas limpio
+        ctx = canvas.getContext("2d");
+        // canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height) //hace que el renderizado sea mas limpio
+        ctx.drawImage(video, 0, 0, video.width, video.height, 0, 0, canvas.width, canvas.height);
         faceapi.draw.drawDetections(canvas, resizeDetections) //dibujo loque quiero visualizar
         faceapi.draw.drawFaceLandmarks(canvas, resizeDetections)
         faceapi.draw.drawFaceExpressions(canvas, resizeDetections)
