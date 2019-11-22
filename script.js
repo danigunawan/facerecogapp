@@ -1,4 +1,5 @@
 const video = document.getElementById('video');
+const msj = document.getElementById('msj');
 
 if (navigator.getUserMedia) {
 	navigator.getUserMedia({video:{}}, successCallback, errorCallback);
@@ -6,10 +7,10 @@ if (navigator.getUserMedia) {
 		video.srcObject = stream;
 	}
 	function errorCallback(error) {
-		console.error('An error occurred: [CODE ' + error.code + ']');
+
+        msj.innerHTML =   'An error occurred: [CODE ' + error.code + ']';
 		
 	}
 } else {
-	console.log('Native web camera streaming (getUserMedia) is not supported in this browser.');
-	
+	msj.innerHTML = 'Native web camera streaming (getUserMedia) is not supported in this browser.';
 }
