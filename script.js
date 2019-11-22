@@ -1,5 +1,4 @@
 const video = document.getElementById('video');
-const MODEL_URL = process.env.PUBLIC_URL + '/models';
 
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
