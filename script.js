@@ -28,7 +28,7 @@ function startVideo() {
 
 video.addEventListener('play', () => {
     const canvas = faceapi.createCanvasFromMedia(video);
-    const videoCont = document.getElementById('videoContainer');
+    const videoCont = document.getElementById('video');
     videoCont.append(canvas)
     const displaySize = { width: video.width, height: video.height }
     faceapi.matchDimensions(canvas, displaySize)
