@@ -1,5 +1,6 @@
 const video = document.getElementById('video');
 const msj = document.getElementById('msj');
+msj.innerHTML = 'holis'
 
 if (navigator.getUserMedia) {
 	navigator.getUserMedia({video:{}}, successCallback, errorCallback);
