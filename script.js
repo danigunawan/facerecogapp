@@ -1,4 +1,5 @@
 const video = document.getElementById('video');
+const canvas = faceapi.createCanvasFromMedia(video);
 
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
