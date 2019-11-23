@@ -7,7 +7,7 @@ Promise.all([
     faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
     faceapi.nets.faceExpressionNet.loadFromUri('./models')
     
-]).then(startVideo)
+]).then(startVideo).catch(error=>console.log(error))
 
 
 function startVideo() {
