@@ -35,6 +35,7 @@ video.addEventListener('play', () => {
     setInterval(async () => {
         const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
         const resizeDetections = faceapi.resizeResults(detections, displaySize)
+        console.log(detections)
         canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height) //hace que el renderizado sea mas limpio
         faceapi.draw.drawDetections(canvas, resizeDetections) //dibujo loque quiero visualizar
         faceapi.draw.drawFaceLandmarks(canvas, resizeDetections)
