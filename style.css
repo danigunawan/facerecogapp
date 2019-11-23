@@ -12,7 +12,7 @@ body {
 
 canvas {
     position: absolute;
-    max-width: 650px;
+    /* max-width: 650px; */
 }
 
 h1 {
