@@ -1,20 +1,14 @@
 body {
-    padding: 0;
     margin: 0;
+    padding: 0;
     width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
+    height: 50vw;
     align-items: center;
-    background-color: rgb(236, 211, 211);
+    justify-content: center;
+    display:flex;
     
 }
 
 canvas {
     position: absolute;
-    /* max-width: 650px; */
-}
-
-h1 {
-    text-align: center;
 }
