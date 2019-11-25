@@ -34,7 +34,7 @@ video.addEventListener('play', () => {
     document.body.append(canvas)
 
     // new code
-    // document.getElementById('overlay').style.display = "block";
+    document.getElementById('overlay').style.display = "block";
     const dims = faceapi.matchDimensions(canvas, video, true);
     dims.height = video.offsetHeight;
     dims.width = video.offsetWidth;
