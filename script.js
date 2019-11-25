@@ -6,8 +6,8 @@ Promise.all([
     faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
     faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
     faceapi.nets.faceExpressionNet.loadFromUri('./models')
-    
-]).then(startVideo).catch(error=>console.log(error))
+
+]).then(startVideo).catch(error => console.log(error))
 
 
 function startVideo() {
@@ -30,16 +30,24 @@ function startVideo() {
 
 video.addEventListener('play', () => {
     const canvas = faceapi.createCanvasFromMedia(video);
-    const displaySize = { width: video.width, height: video.height }
+    // const displaySize = { width: video.width, height: video.height }
     document.body.append(canvas)
-    faceapi.matchDimensions(canvas, displaySize)
+
+    // new code
+    document.getElementById('overlay').style.display = "block";
+    const dims = faceapi.matchDimensions(canvas, videoEl, true);
+    dims.height = videoEl.offsetHeight;
+    dims.width = videoEl.offsetWidth;
+    canvas.height = videoEl.offsetHeight;
+    canvas.width = videoEl.offsetWidth;    
+    
     setInterval(async () => {
         const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-        const resizeDetections = faceapi.resizeResults(detections, displaySize)
+        const resizeDetections = faceapi.resizeResults(detections, dims)
         canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height) //hace que el renderizado sea mas limpio
-        faceapi.draw.drawDetections(canvas, resizeDetections) //dibujo loque quiero visualizar
-        faceapi.draw.drawFaceLandmarks(canvas, resizeDetections)
-        faceapi.draw.drawFaceExpressions(canvas, resizeDetections)
+        faceapi.draw.drawDetections(canvas, resizedResult) //dibujo loque quiero visualizar
+        faceapi.draw.drawFaceLandmarks(canvas, resizedResult)
+        faceapi.draw.drawFaceExpressions(canvas, resizedResult)
     }, 100)
 })
 
