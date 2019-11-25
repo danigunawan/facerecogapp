@@ -35,11 +35,11 @@ video.addEventListener('play', () => {
 
     // new code
     document.getElementById('overlay').style.display = "block";
-    const dims = faceapi.matchDimensions(canvas, videoEl, true);
-    dims.height = videoEl.offsetHeight;
-    dims.width = videoEl.offsetWidth;
-    canvas.height = videoEl.offsetHeight;
-    canvas.width = videoEl.offsetWidth;    
+    const dims = faceapi.matchDimensions(canvas, video, true);
+    dims.height = video.offsetHeight;
+    dims.width = video.offsetWidth;
+    canvas.height = video.offsetHeight;
+    canvas.width = video.offsetWidth;    
     
     setInterval(async () => {
         const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
